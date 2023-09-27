@@ -1,0 +1,41 @@
+plugins {
+    id 'pl.allegro.tech.build.axion-release' version '1.15.4'
+    id 'com.gradle.plugin-publish' version '1.1.0'
+    id "java-gradle-plugin"
+}
+
+
+description "FramJet Gradle Repo Plugin"
+
+group = "org.framjet.gradle.plugins.repo"
+
+gradlePlugin {
+    website = "https://framjet.dev"
+    vcsUrl = "https://github.com/framjet/java-framjet-gradle-repo-plugin.git"
+
+
+    plugins {
+        framJetRepo {
+            id = 'org.framjet.repo'
+            displayName = 'FramJet Gradle Repository Plugin'
+            description = 'A Gradle plugin which provides easier access to FramJet Framework repositories without hard coding them'
+            implementationClass = 'org.framjet.gradle.plugins.repo.FramJetGradleRepoPlugin'
+            tags.addAll("framjet")
+        }
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_20
+    targetCompatibility = JavaVersion.VERSION_20
+}
+
+scmVersion {
+    versionCreator("versionWithCommitHash")
+
+    tag {
+        prefix = ""
+    }
+}
+
+project.version = scmVersion.version
