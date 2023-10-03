@@ -18,7 +18,10 @@ gradlePlugin {
         framJetRepo {
             id = 'org.framjet.repo'
             displayName = 'FramJet Gradle Repository Plugin'
-            description = 'A Gradle plugin which provides easier access to FramJet Framework repositories without hard coding them'
+            description = 'This Gradle plugin designed to facilitate the seamless setup of ' +
+                    'repositories, optimized for FramJet projects. It manages interactions, ' +
+                    'credentials, configurations, and provides flexible publishing options to ' +
+                    'enhance the user and developer experience.'
             implementationClass = 'org.framjet.gradle.plugins.repo.FramJetGradleRepoPlugin'
             tags.addAll("framjet")
         }

@@ -2,35 +2,74 @@
 
 ## Overview
 
-The FramJet Gradle Plugin is a versatile tool designed to initialize and configure FramJet framework repositories. This plugin is instrumental for developers working with different development channels such as dev, alpha, and beta when creating frameworks. It allows for smooth transitions and management of different phases of framework development, catering to a broad spectrum of development scenarios and not exclusive to any specific use case or company.
-
-## Installation
-
-To apply the FramJet Gradle Plugin, add the following lines to your `build.gradle` file:
-
-```gradle
-plugins {
-  id "org.framjet.repo" version "1.0.0"
-}
-```
+FramJet Gradle Plugin is a custom Gradle plugin designed to facilitate the seamless setup of repositories, optimized for FramJet projects. It manages interactions, credentials, configurations, and provides flexible publishing options to enhance the user and developer experience.
 
 ## Features
 
-* **Framework Initialization**: Automate the setup of FramJet framework repositories.
-* **Channel Management**: Easily switch between dev, alpha, and beta channels, allowing for diverse development and testing environments.
-* **Configuration Management**: Provides an extensive configuration setup, enabling developers to manage frameworks efficiently.
+- **Easy Repository Setup**: Automates the setup of the main repository URL for all your Gradle projects.
+- **Secure Credential Management**: Manages and validates repository credentials effectively.
+- **Flexible Publishing Options**: Offers customizable configurations for publishing to different repository types.
+- **Extensive Configuration Support**: Supports configurations via environment variables, project properties, and `gradle.properties`.
 
+## Getting Started
 
-## Configuration
+### Applying the Plugin
 
-The plugin allows extensive configurations allowing developers to adapt the framework initialization and management to their needs. Here is an example configuration:
+To apply the plugin, add the following to your `settings.gradle` file:
 
 ```gradle
-framJet {
-  channel = "dev" // default channel
-  frameworkVersion = "1.0.0" // default framework version
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+
+plugins {
+    id "org.framjet.repo" version "1.0.0"
 }
 ```
+
+### Configuring the Plugin
+
+Configure the plugin using the `framjet` extension in your `settings.gradle` file:
+
+```groovy
+framjet {
+    url = "<main-repo-url>"
+    releaseUrl = "<release-repo-url>"
+    snapshotUrl = "<snapshot-repo-url>"
+    username = "<repo-username>"
+    password = "<repo-password>"
+}
+```
+
+Configure the `framjetProject` extension for project-specific settings:
+
+```groovy
+framjetProject {
+    allowPublishToNonFramJetRepository = <true/false>
+}
+```
+
+### Alternative Configurations
+
+You can also configure the plugin properties in `gradle.properties` or via environment variables:
+
+| Property                    | Environment Variable        | Description                            |
+|-----------------------------|-----------------------------|----------------------------------------|
+| `framjet.repo.url`          | `FRAMJET_REPO_URL`          | Specifies the main repository URL.     |
+| `framjet.repo.release.url`  | `FRAMJET_REPO_RELEASE_URL`  | Specifies the release repository URL.  |
+| `framjet.repo.snapshot.url` | `FRAMJET_REPO_SNAPSHOT_URL` | Specifies the snapshot repository URL. |
+| `framjet.repo.username`     | `FRAMJET_REPO_USERNAME`     | Specifies the username.                |
+| `framjet.repo.password`     | `FRAMJET_REPO_PASSWORD`     | Specifies the password.                |
+
+## Compatibility
+
+This plugin is developed and tested with Gradle 8.3. Compatibility with other Gradle versions is not guaranteed.
+
+## Issues and Contributions
+
+For any issues, bugs, or feature requests, please use the project's issue tracker. Contributions are welcome; adhere to the project's contribution guidelines when submitting any changes.
 
 ## Contribution
 
