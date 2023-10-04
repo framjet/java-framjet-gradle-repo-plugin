@@ -25,7 +25,7 @@ pluginManagement {
 }
 
 plugins {
-    id "org.framjet.repo" version "1.0.0"
+    id "org.framjet.repo" version "1.1.0"
 }
 ```
 

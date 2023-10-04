@@ -34,6 +34,18 @@ public class FramJetGradleRepoPlugin implements Plugin<Settings> {
             throw new GradleException("Cannot load Gradle parameters", e);
         }
 
+        String localSettingsFilename = getParam(
+                String.class,
+                extension.getLocalSettingsFilename(),
+                "local.settings.filename",
+                "settings.local.gradle"
+        );
+
+        File localSettingsFile = new File(target.getRootDir(), localSettingsFilename);
+        if (localSettingsFile.exists()) {
+            target.apply(from -> from.from(localSettingsFile));
+        }
+
         String mainRepoUrl = getParam(
                 String.class,
                 extension.getUrl(),
